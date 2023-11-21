@@ -1,0 +1,13 @@
+.characterone {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 20%;
+}
+
+.codingicons {
+  position: absolute;
+  right: 5%;
+  top: 25%;
+  width: 15%;
+}

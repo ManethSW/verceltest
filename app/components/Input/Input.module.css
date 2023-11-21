@@ -1,0 +1,29 @@
+.input {
+    position: relative;
+}
+
+.input label {
+    position: absolute;
+    left: 20px;
+    background-color: white;
+    font-family: 'tripsans-bold';
+    font-size: 18px;
+    padding: 0px 10px;
+}
+.input input {
+    width: 100%;
+    padding: 15px 30px;
+    margin-top: 13px;
+    font-family: 'tripsans-bold';
+    font-size: 16px;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.validcheck {
+    position: absolute;
+    width: 20px;
+    top: 32.5px;
+    right: 20px;
+}
