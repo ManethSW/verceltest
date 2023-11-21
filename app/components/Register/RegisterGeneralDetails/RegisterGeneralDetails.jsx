@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./RegisterGeneralDetails.module.css";
-import Input from "../Input/Input";
-import useInputValidation from "../../hooks/UserInputValidation";
+import Input from "../../Input/Input";
+import useInputValidation from "../../../hooks/UserInputValidation";
 import axios from "axios";
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import { useRouter } from 'next/navigation';

@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import styles from './page.module.css'
 import LogRegBackground from '../components/LogRegBackground/LogRegBackground'
-import RegisterSelectUser from '../components/RegisterSelectUser/RegisterSelectUser'
-import RegisterGeneralDetails from '../components/RegisterGeneralDetails/RegisterGeneralDetails'
+import RegisterSelectUser from '../components/Register/RegisterSelectUser/RegisterSelectUser'
+import RegisterGeneralDetails from '../components/Register/RegisterGeneralDetails/RegisterGeneralDetails'
 
 const Page = () => {
   const [stage, setStage] = useState(0);

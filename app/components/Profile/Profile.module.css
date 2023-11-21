@@ -189,6 +189,14 @@
     background-color: rgba(0, 255, 0, 1);
 }
 
+.otp {
+    background-color: rgba(0, 0, 0, 0.1)
+}
+
+.otp:hover {
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
 .initial {
     color: rgba(0, 0, 0, 0.75);
 }
@@ -199,4 +207,64 @@
 
 .invalid {
     color: red;
+}
+
+.verification {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.verification p {
+    font-family: 'tripsans-bold';
+    font-size: 14px;
+    background-color: #1DBF73;
+    padding: 0px 10px;
+    border-radius: 100px;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-family: 'tripsans-medium';
+    font-size: 18px;
+    color: black;
+    background-color: #1DBF73;
+    padding: 15px 20px;
+    padding-right: 25px;
+    border-radius: 25px;
+}
+
+.otpcontainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-top: 25px;
+}
+
+.otpheader {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.otpheader h3, .otpheader span {
+    font-family: 'tripsans-medium';
+    font-size: 16px;
+}
+
+.otpinputs {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.otpinputs input {
+    width: 40px;
+    text-align: center;
+}
+
+.otpinputs input:focus {
+    border: 1px solid rgba(0, 0, 0, 1);
 }
