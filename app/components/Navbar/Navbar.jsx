@@ -26,16 +26,16 @@ const NavBar = () => {
         </div>
         <ul className={`${styles.linksContainer}`}>
           <li className={styles.link}>
-            <Link href="/">Home</Link>
+            <Link href="/">me</Link>
           </li>
           <li className={styles.link}>
-            <Link href="/jobs">Jobs</Link>
+            <Link href="/jobs">bs</Link>
           </li>
           <li className={styles.link}>
-            <Link href="/freelancers">Freelancers</Link>
+            <Link href="/freelancers">eelancers</Link>
           </li>
           <li className={styles.link}>
-            <Link href="/about">About Us</Link>
+            <Link href="/about">out Us</Link>
           </li>
         </ul>
       </div>
