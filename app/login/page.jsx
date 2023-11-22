@@ -26,38 +26,37 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    router.push('/profile');
-    // if (usernameOrEmailValid === "valid" && passwordValid === "valid") {
-    //   const loginUrl =
-    //     "https://1e33-2402-d000-813c-10e5-bd13-b092-4239-a7c9.ngrok-free.app/auth/login";
-    //   const headers = {
-    //     auth_token: "LASDLkoasnkdnawndkansjNKJFNKJANSKN",
-    //   };
-    //   const data = {
-    //     email: usernameOrEmail,
-    //     password: password,
-    //   };
+    if (usernameOrEmailValid === "valid" && passwordValid === "valid") {
+      const loginUrl =
+        "https://job-lk-backend.onrender.com/auth/login";
+      const headers = {
+        auth_token: "LASDLkoasnkdnawndkansjNKJFNKJANSKN",
+      };
+      const data = {
+        email: usernameOrEmail,
+        password: password,
+      };
 
-    //   try {
-    //     const loginResponse = await axios.post(loginUrl, data, { headers });
-    //     console.log(loginResponse.data);
-    //     const newHeaders = {
-    //       auth_token: "LASDLkoasnkdnawndkansjNKJFNKJANSKN",
-    //     };
-    //     const userUrl = `https://1e33-2402-d000-813c-10e5-bd13-b092-4239-a7c9.ngrok-free.app/user?email=${usernameOrEmail}`;
-    //     const userResponse = await axios.get(userUrl, {
-    //       headers: newHeaders,
-    //     });
-    //     console.log(userResponse.data);
-    //     setUser({
-    //       ...user,
-    //       username: userResponse.data.username,
-    //       email: userResponse.data.email,
-    //     });
-    //   } catch (error) {
-    //     console.error(error.response.data);
-    //   }
-    // }
+      try {
+        const loginResponse = await axios.post(loginUrl, data, { headers, withCredentials:true });
+        console.log(loginResponse.data);
+        // const newHeaders = {
+        //   auth_token: "LASDLkoasnkdnawndkansjNKJFNKJANSKN",
+        // };
+        // const userUrl = `https://1e33-2402-d000-813c-10e5-bd13-b092-4239-a7c9.ngrok-free.app/user?email=${usernameOrEmail}`;
+        // const userResponse = await axios.get(userUrl, {
+        //   headers: newHeaders,
+        // });
+        // console.log(userResponse.data);
+        // setUser({
+        //   ...user,
+        //   username: userResponse.data.username,
+        //   email: userResponse.data.email,
+        // });
+      } catch (error) {
+        console.error(error.response.data);
+      }
+    }
   };
 
   const GoogleLoginButton = () => {
