@@ -6,7 +6,7 @@ import styles from "./Navbar.module.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleMenuToggle = () => {
     setIsOpen(!isOpen);
@@ -43,17 +43,21 @@ const NavBar = () => {
         {isLoggedIn ? (
           <>
             <div className={styles.userContainer}>
-              <i class="fa-solid fa-user"></i>
+              <i className="fa-solid fa-user"></i>
               <p>Thinal</p>
             </div>
           </>
         ) : (
           <>
             <Link href="/login">
-              <button className={`${styles.actionButton} ${styles.login}`}>Login</button>
+              <button className={`${styles.actionButton} ${styles.login}`}>
+                Login
+              </button>
             </Link>
             <Link href="/register">
-              <button className={`${styles.actionButton} ${styles.register}`}>Sign Up</button>
+              <button className={`${styles.actionButton} ${styles.register}`}>
+                Sign Up
+              </button>
             </Link>
           </>
         )}
