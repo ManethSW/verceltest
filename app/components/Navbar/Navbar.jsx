@@ -6,7 +6,7 @@ import styles from "./Navbar.module.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleMenuToggle = () => {
     setIsOpen(!isOpen);
@@ -26,16 +26,16 @@ const NavBar = () => {
         </div>
         <ul className={`${styles.linksContainer}`}>
           <li className={styles.link}>
-            <Link href="/">me</Link>
+            <Link href="/">Home</Link>
           </li>
           <li className={styles.link}>
-            <Link href="/jobs">bs</Link>
+            <Link href="/jobs">Jobs</Link>
           </li>
           <li className={styles.link}>
-            <Link href="/freelancers">eelancers</Link>
+            <Link href="/freelancers">Freelancers</Link>
           </li>
           <li className={styles.link}>
-            <Link href="/about">out Us</Link>
+            <Link href="/about">About Us</Link>
           </li>
         </ul>
       </div>
