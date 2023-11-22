@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import styles from "../Profile.module.css";
 import Image from "next/image";
 
@@ -29,7 +29,7 @@ const General = () => {
   const [country, setCountry] = useState("");
 
   const [avatar, setAvatar] = useState(null);
-  const fileInputRef = React.createRef();
+  const fileInputRef = createRef();
 
   const handleAvatarClick = () => {
     fileInputRef.current.click();

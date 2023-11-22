@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import styles from "./page.module.css";
 import General from "../components/Profile/General/General";
 import ContactInformation from "../components/Profile/ContactInformation/ContactInformation";
+import ChangePassword from "../components/Profile/ChangePassword/ChangePassword";
+import Portfolio from "../components/Profile/Portfolio/Portfolio";
 
 const Profile = () => {
   const [navigation, setNavigation] = useState("General");
@@ -34,16 +36,16 @@ const Profile = () => {
         <div className={styles.bodycontent}>
           {navigation === "General" && (
             <div>
-              <General/>
+              <General />
             </div>
           )}
-          {navigation === "Contact Information" && (
-            <ContactInformation/>
+          {navigation === "Contact Information" && <ContactInformation />}
+          {navigation === "Portfolio" && (
+            <div>
+              <Portfolio />
+            </div>
           )}
-          {navigation === "Portfolio" && <div>Portfolio Content</div>}
-          {navigation === "Change Password" && (
-            <div className={styles.bodycontent}></div>
-          )}
+          {navigation === "Change Password" && <ChangePassword />}
           {navigation === "Social Profiles" && (
             <div>Social Profiles Content</div>
           )}

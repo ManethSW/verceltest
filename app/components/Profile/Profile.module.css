@@ -268,3 +268,27 @@
 .otpinputs input:focus {
     border: 1px solid rgba(0, 0, 0, 1);
 }
+
+.buttoncontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 10px 0px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.addProject {
+    font-family: 'tripsans-medium';
+}
+
+.addprojectform {
+    display: flex;
+}
+
+.addprojectform input {
+    width: 100%;
+}

@@ -180,6 +180,7 @@ const ContactInformation = () => {
       </div>
     );
   };
+  
   return (
     <div className={styles.bodycontent}>
       {toastVisible && (
