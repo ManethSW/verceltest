@@ -11,6 +11,8 @@ const Portfolio = () => {
   const [projects, setProjects] = useState([]);
   const [editingProjectIndex, setEditingProjectIndex] = useState(null);
   const fileInputRef = useRef();
+  const placeholderImages = new Array(5).fill(null);
+  const [editingImageIndex, setEditingImageIndex] = useState(null);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -42,29 +44,28 @@ const Portfolio = () => {
   };
 
   const handleImageUpload = (event) => {
-    // Convert the FileList to an array
     const files = Array.from(event.target.files);
-
-    // Check if the number of currently selected images plus the number of new images exceeds 5
-    if (images.length + files.length > 5) {
-      alert("You can only select up to 5 images.");
-    } else {
-      files.forEach((file) => {
-        // Create a new FileReader object for each file
+    files.forEach((file) => {
+      if (file) {
         const reader = new FileReader();
-
-        // This will be called once the reader has finished reading a file
         reader.onloadend = () => {
-          // The result attribute contains the data URL of the image
-          setImages((oldImages) => [...oldImages, reader.result]);
+          setImages((oldImages) => {
+            if (editingImageIndex !== null) {
+              // Replace the image being edited with the new image
+              const newImages = [...oldImages];
+              newImages[editingImageIndex] = reader.result;
+              return newImages;
+            } else {
+              // Add the new image to the end of the array
+              return [...oldImages, reader.result];
+            }
+          });
+          // Reset the editing image index
+          setEditingImageIndex(null);
         };
-
-        // Read the file as a data URL
         reader.readAsDataURL(file);
-      });
-    }
-
-    // Reset the value of the file input element
+      }
+    });
     event.target.value = null;
   };
 
@@ -88,6 +89,17 @@ const Portfolio = () => {
     fileInputRef.current.click();
   };
 
+  const handleImageDelete = (index) => {
+    setImages((oldImages) => oldImages.filter((_, i) => i !== index));
+  };
+
+  const handleImageEdit = (index) => {
+    // Save the index of the image being edited to a state
+    setEditingImageIndex(index);
+    // Trigger the file input click event to select a new image
+    fileInputRef.current.click();
+  };
+
   return (
     <div className={styles.bodycontent}>
       <div
@@ -99,32 +111,33 @@ const Portfolio = () => {
       </div>
 
       {isFormOpen && (
-        <form onSubmit={handleFormSubmit} className={styles.addprojectform}>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
-            required
-          />
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Description"
-            required
-          />
-          <input
-            type="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="URL"
-            required
-          />
-          <div>
-            <button type="button" onClick={handleFileButtonClick}>
-              Select Images
-            </button>
+        <div>
+          <div className={styles.divider}></div>
+          <form onSubmit={handleFormSubmit} className={styles.addprojectform}>
+            <div className={styles.titleurl}>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Title"
+                required
+              />
+              <input
+                type="url"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="URL"
+                required
+              />
+            </div>
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+              required
+              className={styles.description}
+            />
             <input
               type="file"
               multiple
@@ -133,29 +146,74 @@ const Portfolio = () => {
               style={{ display: "none" }}
               ref={fileInputRef}
             />
+            <div className={styles.buttons}>
+              <button type="button" onClick={handleFileButtonClick}>
+                Select Images
+              </button>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+          <div className={styles.formimages}>
+            {placeholderImages.map((_, index) => (
+              <div key={index} className={styles.formimage}>
+                {images[index] ? (
+                  <div className={styles.imagecontainer}>
+                    <Image
+                      src={images[index]}
+                      alt={`Preview ${index}`}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                    <div className={styles.imageactions}>
+                      <button onClick={() => handleImageDelete(index)}>
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                      <button onClick={() => handleImageEdit(index)}>
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={styles.placeholderImage}>
+                    <i class="fa-solid fa-question"></i>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-          <button type="submit">Submit</button>
-        </form>
-      )}
-      {images.map((image, index) => (
-        <div
-          key={index}
-          style={{ position: "relative", width: "100px", height: "100px" }}
-        >
-          <Image
-            src={image}
-            alt={`Preview ${index}`}
-            layout="fill"
-            objectFit="cover"
-          />
+          <div className={styles.divider}></div>
         </div>
-      ))}
+      )}
       {projects.map((project, index) => (
-        <div key={index}>
-          <h2>{project.title}</h2>
-          <button onClick={() => handleEditClick(index)}>Edit</button>
-          <button onClick={() => handleDeleteClick(index)}>Delete</button>
-          <button>View</button>
+        <div key={index} className={styles.displayproject}>
+          <div className={styles.displayprojecttitleimage}>
+            {project.images[0] && (
+              <div className={styles.image}>
+                <Image
+                  src={project.images[0]}
+                  alt={`Project ${index}`}
+                  width={50}
+                  height={50}
+                  className={styles.formimage}
+                />
+              </div>
+            )}
+            <h2>{project.title}</h2>
+          </div>
+          <div className={styles.projectcrud}>
+            <button
+              onClick={() => handleEditClick(index)}
+              className={styles.edit}
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => handleDeleteClick(index)}
+              className={styles.delete}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       ))}
     </div>
